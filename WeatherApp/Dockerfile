@@ -12,15 +12,16 @@ FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 
-# Debug: Check what files are available
-RUN pwd && ls -la /src && ls -la .
-
 # Copy project file and restore dependencies
-COPY *.csproj ./
-RUN dotnet restore
+COPY ["WeatherApp/WeatherApp.csproj", "."]
+RUN dotnet restore "WeatherApp.csproj"
 
 # Copy source code and build
 COPY . .
+WORKDIR /src
+COPY WeatherApp/ ./WeatherApp/
+WORKDIR /src/WeatherApp
+RUN dotnet restore "WeatherApp.csproj"
 RUN dotnet build "WeatherApp.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 # Publish stage
