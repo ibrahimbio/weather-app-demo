@@ -1,0 +1,4 @@
+FROM alpine
+COPY . /debug
+RUN ls -la /debug
+RUN find /debug -name "*.csproj" -type f
