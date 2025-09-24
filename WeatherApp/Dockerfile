@@ -13,7 +13,7 @@ ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 
 # Copy project file and restore dependencies
-COPY ["WeatherApp.csproj", "."]
+COPY WeatherApp.csproj ./
 RUN dotnet restore "WeatherApp.csproj"
 
 # Copy source code and build
