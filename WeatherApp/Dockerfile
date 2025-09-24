@@ -12,9 +12,12 @@ FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 
+# Debug: Check what files are available
+RUN pwd && ls -la /src && ls -la .
+
 # Copy project file and restore dependencies
-COPY WeatherApp.csproj ./
-RUN dotnet restore "WeatherApp.csproj"
+COPY *.csproj ./
+RUN dotnet restore
 
 # Copy source code and build
 COPY . .
