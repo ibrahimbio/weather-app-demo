@@ -40,6 +40,7 @@ jobs:
           --overwrite-existing
 
         kubectl set image deployment/weather-app weather-app=${{ env.IMAGE_TAG }}
-        kubectl rollout status deployment/weather-app --timeout=600s  # this is a drill 
+        kubectl rollout status deployment/weather-app --timeout=600s  # this is
+    
 
         
